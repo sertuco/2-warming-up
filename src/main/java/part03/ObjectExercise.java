@@ -1,5 +1,6 @@
 package part03;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,8 +24,11 @@ public class ObjectExercise {
      * @return A list of names of the people in the list.
      */
     public List<String> getNames(List<Person> people) {
-        // hint: you can call the getName() method of each Person on the list
-        return null;
+        List<String> nameList = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++) {
+            nameList.add(people.get(i).getName());
+        }
+        return nameList;
     }
 
     /**
@@ -38,9 +42,14 @@ public class ObjectExercise {
      * @return The oldest person in the list.
      */
     public Person getOldest(List<Person> people) {
-        // hint: you can call the getAge() method of each Person on the list and compare
-        // the ages to find the oldest person
-        return null;
+        Person oldest = null;
+        for (int i = 0; i < people.size(); i++) {
+            Person examine = people.get(i);
+            if (oldest == null || examine.getAge() > oldest.getAge()) {
+                oldest = examine;
+            }
+        }
+        return oldest;
     }
 
     /**
@@ -65,7 +74,20 @@ public class ObjectExercise {
      * @return A formatted string representing the names of people in the list.
      */
     public String generateNamesString(List<Person> people) {
-        // TODO: implement this method
-        return null;
+        String answer = "";
+        if (people.size() == 1) {
+            answer = people.get(0).getName();
+            return answer;
+        } else if (people.size() == 2) {
+            answer = people.get(0).getName() + " and " + people.get(1).getName();
+            return answer;
+        } else if (people.size() == 3) {
+            answer = people.get(0).getName() + ", " + people.get(1).getName() + " and " + people.get(2).getName();
+            return answer;
+        } else if (people.size() >= 4) {
+            answer = people.get(0).getName() + ", " + people.get(1).getName() + " and " + (people.size() - 2) + " others";
+            return answer;
+        }
+        return "";
     }
 }
